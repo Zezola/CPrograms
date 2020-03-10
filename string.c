@@ -1,35 +1,43 @@
 #include <stdio.h> 
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 
 int main () {
-    char texto[50], inverso[50];
-    int i,j;
+    char palavra[50], inverso[50];
+    int i, j, palindromo; 
     j = 0;
+    palindromo = 0;
 
-    printf("Digite um texto: \n");
-    gets(texto);
+    printf("Escreva uma palavra: \n"); 
+    scanf("%s", palavra); 
 
-    //Informe o tamanho da string digitada 
-    printf('Tamanho: %d\n',strlen(texto)); 
-
-    //Imprima ela ao contrario e informe se é palindromo 
-    for ( i = strlen(texto) - 1; i >= 0; i--,j++) {
-        inverso[j] = texto[i];
+    i = strlen(palavra) - 1; 
+    
+    /* Inverte a palavra */
+    for (i ; i >= 0; i--, j++) {
+        inverso[j] = palavra[i]; 
     }
-    inverso[j] = '\0';
 
-    for ( i,j ; i <= j / 2 ; i++, j-- ) {
-        if ( texto[i] != texto[j]) {
-            printf("Nao e palindromo");
-        } else {
-            printf("E palindromo");
+    printf("Palavra: %s\n", palavra);
+    printf("Invertida: %s\n", inverso);
+
+    printf("%d", i);
+    printf("%d", j);
+    /* Começa a comparar letra por letra a palavra normal e invertida */
+    for (i = strlen(inverso) - 1; i >= 0; i--) {
+        if (palavra[i] != inverso[i]) {
+            palindromo = 1;
         }
     }
+
+    printf("%d", palindromo);
+    /*Verifica se é palindromo */
+    if (palindromo == 1) {
+        printf("Nao e palindromo\n");
+    } else {
+        printf("Palindromo");
+    }
     
-
-
-
-
+    
     return 0;
 }
